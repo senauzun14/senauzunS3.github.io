@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <form onsubmit="gonder(event)">
+       <table>
+        <tbody>
+            <tr>
+                <td><label for="min">Minimum Değer:</label></td>
+                <td><input type="range" id="min" name="min" min="0" max="100"></td>
+                <td><input type="button" value="seç" onclick="document.getElementById('minInput').value = document.getElementById('min').value;"></td>
+                <td><input name="number" id="minInput" name="min"></input></td>
+               
+          
+            </tr>
+            <tr>
+                <td><label for="max">Maksimum Değer:</label></td>
+                <td><input type="range" id="max" name="max" min="0" max="100" ></td>
+                <td><input type="button" value="seç" onclick="document.getElementById('maxInput').value = document.getElementById('max').value;"></td>
+                <td><input name="number" id="maxInput" name="max"></input></td> 
+            </tr>
+            
+            <tr>
+                
+                <td><hr><input type="submit" value="Uret"></td>
+            </tr>
+        </tbody>
+       </table>
+    </form>
+    <label id="result"></label>
+    <script>
+        function gonder(event) {
+            event.preventDefault();
+
+           
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            const min = parseInt(data.min);
+            const max = parseInt(data.max);
+
+           
+            const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+            
+            document.getElementById("result").innerText = "Rastgele sayı: " + randomNumber;
+        }
+    </script>
+</body>
+</html>
+
+
